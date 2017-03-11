@@ -115,31 +115,31 @@
     <Reference Include="Accessibility" />
     <Reference Include="AxInterop.DATAQSDKLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>obj\Debug\AxInterop.DATAQSDKLib.dll</HintPath>
+      <HintPath>lib\AxInterop.DATAQSDKLib.dll</HintPath>
     </Reference>
     <Reference Include="AxInterop.DQCHARTLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>obj\Debug\AxInterop.DQCHARTLib.dll</HintPath>
+      <HintPath>lib\AxInterop.DQCHARTLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.DATAQSDKLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>obj\Debug\Interop.DATAQSDKLib.dll</HintPath>
+      <HintPath>lib\Interop.DATAQSDKLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.DQCHARTLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>obj\Debug\Interop.DQCHARTLib.dll</HintPath>
+      <HintPath>lib\Interop.DQCHARTLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="Microsoft.Vsa" />
     <Reference Include="NationalInstruments.Common, Version=13.0.35.190, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.DAQmx, Version=9.2.35.32, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=x86" />
-    <Reference Include="NationalInstruments.NI4882, Version=8.9.35.104, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.DAQmx, Version=9.6.35.292, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=x86" />
+    <Reference Include="NationalInstruments.NI4882, Version=13.0.35.159, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
     <Reference Include="NationalInstruments.UI, Version=8.1.20.472, Culture=neutral, PublicKeyToken=4544464cdeaab541, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="NationalInstruments.UI.WindowsForms, Version=8.9.35.246, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.VisaNS, Version=8.9.35.108, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.UI.WindowsForms, Version=13.0.35.242, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.VisaNS, Version=13.0.35.167, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System">
       <Name>System</Name>
