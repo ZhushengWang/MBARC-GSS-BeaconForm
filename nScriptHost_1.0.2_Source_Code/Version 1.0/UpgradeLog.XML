@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="nScriptHost1.2">
+</Property><Property Name="Solution File" Value="C:\Users\GSE5\Documents\Visual Studio 2008\Projects\LADEETest 110510\nScriptHost_1.0.2_Source_Code\Version 1.0\nScriptHost1.2.sln">
+</Property><Property Name="Date" Value="Tuesday, December 21, 2010">
+</Property><Property Name="Time" Value="15:29 PM">
+</Property></Properties><Event ErrorLevel="0" Project="nScriptHost" Source="nScriptHost\nScriptHost.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="nScriptHost" Source="nScriptHost\nScriptHost.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="nScriptHostTest" Source="nScriptHostTest\nScriptHostTest.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="nScriptHostTest" Source="nScriptHostTest\nScriptHostTest.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="nScriptHost1.2.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="nScriptHost1.2.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="nScriptHostTest" Source="nScriptHostTest\nScriptHostTest.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

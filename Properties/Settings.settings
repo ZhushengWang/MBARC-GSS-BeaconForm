@@ -1,0 +1,60 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SPRL.TestPXI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ScriptDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\</Value>
+    </Setting>
+    <Setting Name="LogDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">732, 519</Value>
+    </Setting>
+    <Setting Name="SplitterDist" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">202</Value>
+    </Setting>
+    <Setting Name="CIPMarker0" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">238</Value>
+    </Setting>
+    <Setting Name="CIPMarker1" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">250</Value>
+    </Setting>
+    <Setting Name="CIPMarker2" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">77</Value>
+    </Setting>
+    <Setting Name="CIPMarker3" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">239</Value>
+    </Setting>
+    <Setting Name="SourceIP0" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">192</Value>
+    </Setting>
+    <Setting Name="SourceIP1" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">168</Value>
+    </Setting>
+    <Setting Name="SourceIP2" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="SourceIP3" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="SourcePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5009</Value>
+    </Setting>
+    <Setting Name="DestIP0" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">192</Value>
+    </Setting>
+    <Setting Name="DestIP1" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">168</Value>
+    </Setting>
+    <Setting Name="DestIP2" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DestIP3" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="DestPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5009</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

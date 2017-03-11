@@ -1,0 +1,360 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SPRL.Test
+{
+  public partial class HKForm : Form
+  {
+    public int[] LastHK;
+
+    private String[] HKNames = new String[31];
+
+    public HKForm()
+    {
+      InitializeComponent();
+
+      HKNames[0] = "+5D VMon:";
+      HKNames[1] = "+13A VMon:";
+      HKNames[2] = "-13A VMon:";
+      HKNames[3] = "+1.5D VMon:";
+      HKNames[4] = "+3.3D VMon:";
+      HKNames[5] = "-5KV_Mon:";
+      HKNames[6] = "Spare:";
+      HKNames[7] = "RF_AGC_Mon:";
+      HKNames[8] = "RF1_VMon:";
+      HKNames[9] = "GND:";
+      HKNames[10] = "PH_Temp:";
+      HKNames[11] = "FB_Temp:";
+      HKNames[12] = "DET_Temp:";
+      HKNames[13] = "RF_PA_Temp:";
+      HKNames[14] = "RF_CTRL_Temp:";
+      HKNames[15] = "CTL_Temp:";
+      HKNames[16] = "IS_Emon-A:";
+      HKNames[17] = "IS_Emon-B:";
+      HKNames[18] = "FIL_Vmon:";
+      HKNames[19] = "FIL_Imon:";
+      HKNames[20] = "Spare:";
+      HKNames[21] = "EM-1_Vmon:";
+      HKNames[22] = "EM-2_Vmon:";
+      HKNames[23] = "-100-1_Vmon:";
+      HKNames[24] = "-100-2_Vmon:";
+      HKNames[25] = "RF2_VMon:";
+      HKNames[26] = "RF3_VMon:";
+      HKNames[27] = "RF4_VMon:";
+      HKNames[28] = "+5VRef_Vmon:";
+      HKNames[29] = "-5VRef_Vmon:";
+      HKNames[30] = "RF_PRES_Mon:";
+
+      dataGridView1.Columns.Add("Col1", "Col1");
+      dataGridView1.Columns.Add("Col2", "Col2");
+      dataGridView1.Columns.Add("Col3", "Col3");
+      dataGridView1.Columns.Add("Col4", "Col4");
+      dataGridView1.Columns.Add("Col5", "Col5");
+      dataGridView1.Columns.Add("Col6", "Col6");
+      dataGridView1.Columns.Add("Col7", "Col7");
+      dataGridView1.Columns.Add("Col8", "Col8");
+      dataGridView1.Columns.Add("Col9", "Col9");
+      dataGridView1.Columns.Add("Col10", "Col10");
+      
+      dataGridView1.Rows.Add(19);
+
+      dataGridView1.RowHeadersVisible = false;
+      dataGridView1.ColumnHeadersVisible = false;
+
+      for (int i = 0; i < dataGridView1.Rows.Count; i++)
+      {
+        for (int j = 0; j < dataGridView1.Columns.Count; j++)
+        {
+          if ((j % 2) == 0)
+          {
+            dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.Silver;
+          }
+          dataGridView1.Rows[i].Cells[j].ReadOnly = true;
+        }
+      }
+
+      //dataGridView1.Rows[0].Cells[0].Value = "+5D VMon:";
+      //dataGridView1.Rows[1].Cells[0].Value = "+13A VMon:";
+      //dataGridView1.Rows[2].Cells[0].Value = "-13A VMon:";
+      //dataGridView1.Rows[3].Cells[0].Value = "+1.5D VMon:";
+      //dataGridView1.Rows[4].Cells[0].Value = "+3.3D VMon:";
+      //dataGridView1.Rows[5].Cells[0].Value = "-5KV_Mon:";
+      //dataGridView1.Rows[6].Cells[0].Value = "Spare:";  
+      //dataGridView1.Rows[7].Cells[0].Value = "RF_AGC_Mon:";
+      //dataGridView1.Rows[8].Cells[0].Value = "RF1_VMon:";
+      //dataGridView1.Rows[9].Cells[0].Value = "GND:";
+      //dataGridView1.Rows[10].Cells[0].Value = "PH_Temp:";
+      //dataGridView1.Rows[11].Cells[0].Value = "FB_Temp:";
+      //dataGridView1.Rows[12].Cells[0].Value = "DET_Temp:";
+      //dataGridView1.Rows[13].Cells[0].Value = "RF_PA_Temp:";
+      //dataGridView1.Rows[14].Cells[0].Value = "RF_CTRL_Temp:";
+      //dataGridView1.Rows[15].Cells[0].Value = "CTL_Temp:";
+      //dataGridView1.Rows[16].Cells[0].Value = "IS_Emon-A:";
+      //dataGridView1.Rows[17].Cells[0].Value = "IS_Emon-B:";
+      //dataGridView1.Rows[18].Cells[0].Value = "FIL_Vmon:";
+      //dataGridView1.Rows[19].Cells[0].Value = "FIL_Imon:";
+
+      //dataGridView1.Rows[0].Cells[2].Value = "Spare:";
+      //dataGridView1.Rows[1].Cells[2].Value = "EM-1_Vmon:";
+      //dataGridView1.Rows[2].Cells[2].Value = "EM-2_Vmon:";
+      //dataGridView1.Rows[3].Cells[2].Value = "-100-1_Vmon:";
+      //dataGridView1.Rows[4].Cells[2].Value = "-100-2_Vmon:";
+      //dataGridView1.Rows[5].Cells[2].Value = "RF2_VMon:";
+      //dataGridView1.Rows[6].Cells[2].Value = "RF3_VMon:";
+      //dataGridView1.Rows[7].Cells[2].Value = "RF4_VMon:";
+      //dataGridView1.Rows[8].Cells[2].Value = "+5VRef_Vmon:";
+      //dataGridView1.Rows[9].Cells[2].Value = "-5VRef_Vmon:";
+      //dataGridView1.Rows[10].Cells[2].Value = "RF_PRES_Mon:";
+      dataGridView1.Rows[11].Cells[2].Value = "EM-1_DAC:";
+      dataGridView1.Rows[12].Cells[2].Value = "EM-2_DAC:";
+      dataGridView1.Rows[13].Cells[2].Value = "IS_EDAC:";
+      dataGridView1.Rows[14].Cells[2].Value = "FIL_VDAC:";
+      dataGridView1.Rows[15].Cells[2].Value = "DET_A_THR:";
+      dataGridView1.Rows[16].Cells[2].Value = "DET_B_THR:";
+      dataGridView1.Rows[17].Cells[2].Value = "-100-1_DAC:";
+      dataGridView1.Rows[18].Cells[2].Value = "-100-2_DAC:";
+      dataGridView1.Rows[19].Cells[2].Value = "RF-1_DAC:";
+
+      dataGridView1.Rows[0].Cells[4].Value = "RF-2_DAC:";
+      dataGridView1.Rows[1].Cells[4].Value = "RF-4_DAC:";
+      dataGridView1.Rows[2].Cells[4].Value = "10-1_DAC:";
+      dataGridView1.Rows[3].Cells[4].Value = "RF-3_DAC:";
+      dataGridView1.Rows[4].Cells[4].Value = "RF_AMP_DAC:";
+      dataGridView1.Rows[5].Cells[4].Value = "AUX_AMP_DAC:";
+      dataGridView1.Rows[6].Cells[4].Value = "EM-1_Set:";
+      dataGridView1.Rows[7].Cells[4].Value = "EM-2_Set:";
+      dataGridView1.Rows[8].Cells[4].Value = "IS_E_Set:";
+      dataGridView1.Rows[9].Cells[4].Value = "FIL_V_Set:";
+      dataGridView1.Rows[10].Cells[4].Value = "DET_A_Set:";
+      dataGridView1.Rows[11].Cells[4].Value = "DET_B_Set:";
+      dataGridView1.Rows[12].Cells[4].Value = "-100-1_Set:";
+      dataGridView1.Rows[13].Cells[4].Value = "-100-2_Set:";
+      dataGridView1.Rows[14].Cells[4].Value = "RF-1_Set:";
+      dataGridView1.Rows[15].Cells[4].Value = "RF-2_Set:";
+      dataGridView1.Rows[16].Cells[4].Value = "RF-4_Set:";
+      dataGridView1.Rows[17].Cells[4].Value = "10-1_Set:";
+      dataGridView1.Rows[18].Cells[4].Value = "RF-3_Set:";
+      dataGridView1.Rows[19].Cells[4].Value = "RF_AMP_Set:";
+
+      dataGridView1.Rows[0].Cells[6].Value = "AUX_AMP_Set:";
+      dataGridView1.Rows[1].Cells[6].Value = "RF Amp Mon:";
+      dataGridView1.Rows[2].Cells[6].Value = "RF Meas Time:";
+      dataGridView1.Rows[3].Cells[6].Value = "RF Freq Meas:";
+      dataGridView1.Rows[4].Cells[6].Value = "Seq Mark:";
+      dataGridView1.Rows[5].Cells[6].Value = "Seq Status:";
+      dataGridView1.Rows[6].Cells[6].Value = "EDAC UCorr:";
+      dataGridView1.Rows[7].Cells[6].Value = "Packet On/Off:";
+      dataGridView1.Rows[8].Cells[6].Value = "Bin Time:";
+      dataGridView1.Rows[9].Cells[6].Value = "EDAC Status:";
+      dataGridView1.Rows[10].Cells[6].Value = "DDS Rdbk:";
+      dataGridView1.Rows[11].Cells[6].Value = "Tuning Word:";
+      dataGridView1.Rows[12].Cells[6].Value = "Phase Offset:";
+      dataGridView1.Rows[13].Cells[6].Value = "Phase Cycle:";
+      dataGridView1.Rows[14].Cells[6].Value = "Digital On/Off:";
+      dataGridView1.Rows[15].Cells[6].Value = "Ramp Status:";
+      dataGridView1.Rows[16].Cells[6].Value = "Cmds Received:";
+      dataGridView1.Rows[17].Cells[6].Value = "Cmds Executed:";
+      dataGridView1.Rows[18].Cells[6].Value = "Cmds Rejected:";
+      dataGridView1.Rows[19].Cells[6].Value = "Seq Cmds Exec:";
+
+      dataGridView1.Rows[0].Cells[8].Value = "Seq Cmds Rej:";
+      dataGridView1.Rows[1].Cells[8].Value = "Seq ID:";
+      dataGridView1.Rows[2].Cells[8].Value = "Seq Bytes:";
+      dataGridView1.Rows[3].Cells[8].Value = "Pause R0:";
+      dataGridView1.Rows[4].Cells[8].Value = "Pause R1:";
+      dataGridView1.Rows[5].Cells[8].Value = "Pause R2:";
+      dataGridView1.Rows[6].Cells[8].Value = "Pause R3:";
+      dataGridView1.Rows[7].Cells[8].Value = "Pause R4:";
+      dataGridView1.Rows[8].Cells[8].Value = "Pause R5:";
+      dataGridView1.Rows[9].Cells[8].Value = "Pause R6:";
+      dataGridView1.Rows[10].Cells[8].Value = "Pause R7:";
+      dataGridView1.Rows[11].Cells[8].Value = "HKSampT:";
+      dataGridView1.Rows[12].Cells[8].Value = "HKTblID:";
+      dataGridView1.Rows[13].Cells[8].Value = "DDS BLK:";
+      dataGridView1.Rows[14].Cells[8].Value = "DDS Wave:";
+      dataGridView1.Rows[15].Cells[8].Value = "FPGA Ver:";
+      dataGridView1.Rows[16].Cells[8].Value = "SciSkip:";
+    }
+
+    private int makeInt(List<byte> listPkt, int nPos)
+    {
+      return (listPkt[nPos] * 256) + listPkt[nPos + 1];
+    }
+
+    private int makeInt2(List<byte> listPkt, int nPos)
+    {
+      return (int)(((int)listPkt[nPos] << 16) + ((int)listPkt[nPos + 1] << 8) + (int)listPkt[nPos + 2]);
+    }
+
+    private void DisplayHKNames(int [] HKChanID)
+    {
+      dataGridView1.Rows[0].Cells[0].Value = HKNames[HKChanID[0]];
+      dataGridView1.Rows[1].Cells[0].Value = HKNames[HKChanID[1]];
+      dataGridView1.Rows[2].Cells[0].Value = HKNames[HKChanID[2]];
+      dataGridView1.Rows[3].Cells[0].Value = HKNames[HKChanID[3]];
+      dataGridView1.Rows[4].Cells[0].Value = HKNames[HKChanID[4]];
+      dataGridView1.Rows[5].Cells[0].Value = HKNames[HKChanID[5]];
+      dataGridView1.Rows[6].Cells[0].Value = HKNames[HKChanID[6]];
+      dataGridView1.Rows[7].Cells[0].Value = HKNames[HKChanID[7]];
+      dataGridView1.Rows[8].Cells[0].Value = HKNames[HKChanID[8]];
+      dataGridView1.Rows[9].Cells[0].Value = HKNames[HKChanID[9]];
+      dataGridView1.Rows[10].Cells[0].Value = HKNames[HKChanID[10]];
+      dataGridView1.Rows[11].Cells[0].Value = HKNames[HKChanID[11]];
+      dataGridView1.Rows[12].Cells[0].Value = HKNames[HKChanID[12]];
+      dataGridView1.Rows[13].Cells[0].Value = HKNames[HKChanID[13]];
+      dataGridView1.Rows[14].Cells[0].Value = HKNames[HKChanID[14]];
+      dataGridView1.Rows[15].Cells[0].Value = HKNames[HKChanID[15]];
+      dataGridView1.Rows[16].Cells[0].Value = HKNames[HKChanID[16]];
+      dataGridView1.Rows[17].Cells[0].Value = HKNames[HKChanID[17]];
+      dataGridView1.Rows[18].Cells[0].Value = HKNames[HKChanID[18]];
+      dataGridView1.Rows[19].Cells[0].Value = HKNames[HKChanID[19]];
+
+      dataGridView1.Rows[0].Cells[2].Value = HKNames[HKChanID[20]];
+      dataGridView1.Rows[1].Cells[2].Value = HKNames[HKChanID[21]];
+      dataGridView1.Rows[2].Cells[2].Value = HKNames[HKChanID[22]];
+      dataGridView1.Rows[3].Cells[2].Value = HKNames[HKChanID[23]];
+      dataGridView1.Rows[4].Cells[2].Value = HKNames[HKChanID[24]];
+      dataGridView1.Rows[5].Cells[2].Value = HKNames[HKChanID[25]];
+      dataGridView1.Rows[6].Cells[2].Value = HKNames[HKChanID[26]];
+      dataGridView1.Rows[7].Cells[2].Value = HKNames[HKChanID[27]];
+      dataGridView1.Rows[8].Cells[2].Value = HKNames[HKChanID[28]];
+      dataGridView1.Rows[9].Cells[2].Value = HKNames[HKChanID[29]];
+      dataGridView1.Rows[10].Cells[2].Value = HKNames[HKChanID[30]];
+    }
+
+    public void displayHK(List<byte> listPkt)
+    {
+      int[] Convert = new int[100];
+      int[] ADCChans = new int[31];
+      int nOff = 0;
+      const int nHdrLen = 6;
+
+      //ADC Monitors
+      for (int i = 0; i < 31; i++)
+      {
+        Convert[i+nOff] = makeInt(listPkt, (3 * i) + 1+ nHdrLen);
+        ADCChans[i] = listPkt[(3 * i) + nHdrLen];
+      }
+
+      nOff += 31;
+      //8-bit DACs
+      for (int i = 0; i < 8; i++)
+      {
+        Convert[i + nOff] = listPkt[i + 99];
+      }
+      nOff += 8;
+
+      //12-bit DACs
+      for (int i = 0; i < 5; i++)
+      {
+        Convert[i + nOff] = makeInt(listPkt, (2 * i) + 107);
+      }
+      nOff += 5;
+
+      Convert[nOff++] = makeInt(listPkt, 117);  //RF AMP DAC
+      Convert[nOff++] = makeInt(listPkt, 119);  //AUX AMP DAC
+     
+      //8-bit DAC Sets
+      for (int i = 0; i < 8; i++)
+      {
+        Convert[i + nOff] = listPkt[i + 121];
+      }
+      nOff += 8;
+
+      //12-bit DAC Sets
+      for (int i = 0; i < 5; i++)
+      {
+        Convert[i + nOff] = makeInt(listPkt, (2 * i) + 129);
+      }
+      nOff += 5;
+
+      Convert[nOff++] = makeInt(listPkt, 139);  //RF AMP Set
+      Convert[nOff++] = makeInt(listPkt, 141);  //AUX AMP Set
+
+      Convert[nOff++] = makeInt(listPkt, 143);  //RF AMP Samp
+      Convert[nOff++] = makeInt(listPkt, 145);  //RF Meas Time
+
+      Convert[nOff++] = makeInt2(listPkt, 147);  // RF Freq Mon
+      Convert[nOff++] = listPkt[150];            // Seq Mark
+      Convert[nOff++] = listPkt[151];            // Sequence Status
+      Convert[nOff++] = makeInt(listPkt, 152);   // EDAC UCorr
+      Convert[nOff++] = listPkt[154];            // Packet State
+      Convert[nOff++] = makeInt(listPkt, 155);   // Bin Time
+      Convert[nOff++] = makeInt(listPkt, 157);   // EDAC Status
+      Convert[nOff++] = listPkt[159];            // DDS State
+      Convert[nOff++] = makeInt2(listPkt, 160);  //Tuning Word
+      Convert[nOff++] = makeInt2(listPkt, 163);  //Phase Offset
+      Convert[nOff++] = listPkt[166];            //Phase Cycle
+      Convert[nOff++] = makeInt(listPkt, 167);   //Digital Status
+      Convert[nOff++] = listPkt[169];            //Ramp Status
+
+      //Cmd counters (5), Sequence ID, Bytes, Pause Regs
+      for (int i = 0; i < 15; i++)
+      {
+        Convert[i + nOff] = makeInt(listPkt, (2 * i) + 170);
+      }
+      nOff += 15;
+
+      //HK Sample Time, HK Table iD, DDS Blk Size, DDS Wave, FPGA Version
+      for (int i = 0; i < 5; i++)
+      {
+        Convert[i + nOff] = listPkt[i + 200];
+      }
+
+      nOff += 5;
+
+      Convert[nOff] = makeInt(listPkt, 205);
+
+      LastHK = Convert;
+
+      int c = 0;
+      for (int j = 0; j < dataGridView1.ColumnCount; j += 2)
+      {
+        for (int k = 0; k < dataGridView1.RowCount; k++)
+        {
+          if (((c < 31) || (c==61)) && radioVolts.Checked)
+          {
+            double dVolts = (Convert[c] - 32768.0) * 10.0/65536.0;
+            dataGridView1.Rows[k].Cells[j + 1].Value = dVolts.ToString("F3");
+          }
+          else
+          {
+            if (c == 63)
+            {
+              dataGridView1.Rows[k].Cells[j + 1].Value = Convert[c].ToString("G");
+            }
+            else
+            {
+              if ((c == 71) || (c == 72))
+              {
+                dataGridView1.Rows[k].Cells[j + 1].Value = Convert[c].ToString("X6");
+              }
+              else
+              {
+                dataGridView1.Rows[k].Cells[j + 1].Value = Convert[c].ToString("X4");
+              }
+            }
+          }
+          c++;
+          if (c > 96)
+          {
+            break;
+          }
+        }
+      }
+      DisplayHKNames(ADCChans);
+    }
+
+    private void HKForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      this.Hide();
+      e.Cancel = true;
+    }
+  }
+}

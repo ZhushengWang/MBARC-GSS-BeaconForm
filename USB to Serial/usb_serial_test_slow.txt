@@ -1,0 +1,5 @@
+COM.Init("COM1:921600,n,8,1");
+while(1) {
+  COM.TestTXRX();
+  UT.Wait(1);
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="JunoMCSSolution">
+</Property><Property Name="Solution File" Value="C:\Users\GSE3\Documents\Visual Studio 2008\Projects\JunoMCS_1_3\JunoMCS\JunoMCSSolution.sln">
+</Property><Property Name="Date" Value="Thursday, June 17, 2010">
+</Property><Property Name="Time" Value="15:40 PM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="JunoMCS" Source="JunoMCS.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="JunoMCS" Source="JunoMCS.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="nScriptHost" Source="..\nScriptHost_1.0.2_Source_Code\Version 1.0\nScriptHost\nScriptHost.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="nScriptHost" Source="..\nScriptHost_1.0.2_Source_Code\Version 1.0\nScriptHost\nScriptHost.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="JunoMCSSolution.sln" Description="The solution file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="" Source="JunoMCSSolution.sln" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="nScriptHost" Source="..\nScriptHost_1.0.2_Source_Code\Version 1.0\nScriptHost\nScriptHost.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

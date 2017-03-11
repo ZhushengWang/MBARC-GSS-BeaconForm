@@ -1,0 +1,11 @@
+#
+# .gitignore - prevent committing of various files
+#
+
+# Emacs stuff
+\#*#
+*~
+
+# Binaries
+bin/
+obj/
