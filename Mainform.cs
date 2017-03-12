@@ -523,7 +523,10 @@ namespace SPRL.Test
           case QB50Cmds.SU_STORED_ID:
             qb50Cmds.FIP_ProcessData(subPkt);
             break;
-
+          
+          case QB50Cmds.MAG_ID:
+            qb50Cmds.Mag_StoreData(subPkt);
+            break;
           default:
             PrintError("Error: Bad Packet Type" + subPkt[3] + "\n");
             break;

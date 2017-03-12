@@ -91,13 +91,13 @@ namespace SPRL.Test
     public const byte TEST_ID      = 6;
     public const byte SU_ID        = 2;
     public const byte SU_STORED_ID = 4;
-
+    public const byte MAG_ID       = 10;
 
     public FileStream compile;
     public FileStream tm_log;
 
     private String sRetrieveFileName;
-
+    private String sMagFileName = "mag_calibration_test";
     // This is a singleton class
     // Return a reference to the only instance of HPDAQCmds
     // Create the instance if necessary
@@ -1096,7 +1096,45 @@ namespace SPRL.Test
       fsSDP.Close();
       fsHK.Close();
     }
+    public void Mag_StoreData(List<byte> listPkt)
+    {
+      int nPktLen = (listPkt[4] << 8) + listPkt[5];
 
+      if (nPktLen == 0)
+      {
+        MainForm._mainform.PrintMsg("Retrieved Packet is 0 length.\n");
+        return;
+      }
+
+      using (MemoryStream ms = new MemoryStream(listPkt.GetRange(6, nPktLen).ToArray())) {
+      using (BinaryReader br = new BinaryReader(ms))
+      {
+
+        string sMAGname = sMagFileName + ".txt";
+
+        FileStream fsMAG = new FileStream(sMAGname, FileMode.Append);
+
+        //byte[] ayMagData = listPkt.GetRange(6, nPktLen).ToArray(); //Put magnetometer data into array
+
+        //Write Mag Packet to file
+        //fsMAG.Write(ayMagData, 0, nPktLen);
+
+        using (StreamWriter sw = new StreamWriter(fsMAG))
+        {
+          while (ms.Position < ms.Length)
+          {
+            //
+            // Convert UInt16 values into character-encoded values
+            //
+            //sw.Write(ReadUint16()); 
+            sw.WriteLine(((float)((int)br.ReadUInt16()))/6842.0);
+          }
+        }
+        MainForm._mainform.PrintMsg("Saving MAG Packet, " + nPktLen.ToString() + "\n");
+        fsMAG.Close();
+      }
+      }
+    }
     public string RemoveWhitespace(string input)
     {
       return new string(input.ToCharArray()
