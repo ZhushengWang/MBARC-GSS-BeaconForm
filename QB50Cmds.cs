@@ -97,7 +97,16 @@ namespace SPRL.Test
     public FileStream tm_log;
 
     private String sRetrieveFileName;
-    private String sMagFileName = "mag_calibration_test";
+    private String sMagOneFileName = "mag_one_calibration_data";
+    private String sMagTwoFileName = "mag_two_calibration_data";
+    private String sMagThreeFileName = "mag_three_calibration_data";
+    private String sMagFourFileName = "mag_four_calibration_data";
+
+    private const byte SELECT_SP1_MAG = 0;
+    private const byte SELECT_SP2_MAG = 1;
+    private const byte SELECT_SP3_MAG = 2;
+    private const byte SELECT_SP4_MAG = 3;
+
     // This is a singleton class
     // Return a reference to the only instance of HPDAQCmds
     // Create the instance if necessary
