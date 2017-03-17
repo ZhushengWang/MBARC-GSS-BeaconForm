@@ -1114,30 +1114,74 @@ namespace SPRL.Test
         MainForm._mainform.PrintMsg("Retrieved Packet is 0 length.\n");
         return;
       }
+      int uwMagNumber = (listPkt[6] * 256) + listPkt[7];
+      int uwMeasurementCount = listPkt[8]*256 + listPkt[9];
 
-      using (MemoryStream ms = new MemoryStream(listPkt.GetRange(6, nPktLen).ToArray())) {
+      byte[] ConvertedListPkt;
+      ConvertedListPkt = new byte[nPktLen];
+      for (int i = 0; i < nPktLen-5;)
+      {
+        ConvertedListPkt[i] = listPkt[10+i+1];
+        ConvertedListPkt[i+1] = listPkt[10+i];
+        i = i + 2; 
+      }
+
+
+     // using (MemoryStream ms = new MemoryStream(listPkt.GetRange(6, nPktLen).ToArray())) {
+      using (MemoryStream ms = new MemoryStream(ConvertedListPkt)) 
+      {
       using (BinaryReader br = new BinaryReader(ms))
       {
-
-        string sMAGname = sMagFileName + ".txt";
-
+        string sMAGname;
+        switch(uwMagNumber)
+        {
+          case SELECT_SP1_MAG:
+          {
+            sMAGname = sMagOneFileName + ".txt";
+          }
+          break;
+          case SELECT_SP2_MAG:
+          {
+            sMAGname = sMagTwoFileName + ".txt";
+          }
+          break;
+          case SELECT_SP3_MAG:
+          {
+            sMAGname = sMagThreeFileName + ".txt";
+          }
+          break;
+          case SELECT_SP4_MAG:
+          {
+            sMAGname = sMagFourFileName + ".txt"; 
+          }
+          break;
+          default:
+          {
+            MainForm._mainform.PrintMsg("Error: Unknown Magnetometer.\n");
+            return;
+          }
+          
+        }
+     
         FileStream fsMAG = new FileStream(sMAGname, FileMode.Append);
-
-        //byte[] ayMagData = listPkt.GetRange(6, nPktLen).ToArray(); //Put magnetometer data into array
-
-        //Write Mag Packet to file
-        //fsMAG.Write(ayMagData, 0, nPktLen);
 
         using (StreamWriter sw = new StreamWriter(fsMAG))
         {
-          while (ms.Position < ms.Length)
+          sw.WriteLine(uwMagNumber);
+          sw.WriteLine(uwMeasurementCount);
+          while (ms.Position < ms.Length-4)
           {
             //
             // Convert UInt16 values into character-encoded values
             //
-            //sw.Write(ReadUint16()); 
-            sw.WriteLine(((float)((int)br.ReadUInt16()))/6842.0);
+             sw.Write(((float)(br.ReadInt16()))/6842.0);
+             sw.Write(" ");
+             sw.Write(((float)(br.ReadInt16()))/6842.0);
+             sw.Write(" ");
+             sw.Write(((float)(br.ReadInt16()))/6842.0);
+             sw.Write("\n");
           }
+          sw.Write("\n");
         }
         MainForm._mainform.PrintMsg("Saving MAG Packet, " + nPktLen.ToString() + "\n");
         fsMAG.Close();
