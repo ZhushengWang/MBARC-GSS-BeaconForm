@@ -80,9 +80,10 @@ namespace SPRL.Test
     private const byte FIPEX_INIT_RETRIEVAL = 0xBC;
     private const byte FIP_DP_CMD = 0xBD;
     private const byte INIT_DEPLOY_COUNT = 0xBE;
-    private const byte RINGBUFFER_ENABLE = 0xBF;
+    private const byte RINGBUFFER_CLEAR = 0xBF;
     private const byte RINGBUFFER_READ = 0xC0;
-  
+    private const byte RINGBUFFER_SIZE = 0xC1;
+    private const byte MAG_TEST = 0xC2; 
     //Packet constants
     public const byte ACK_ID       = 1;
     public const byte BEACON_ID    = 8;
@@ -100,12 +101,16 @@ namespace SPRL.Test
     private String sMagOneFileName = "mag_one_calibration_data";
     private String sMagTwoFileName = "mag_two_calibration_data";
     private String sMagThreeFileName = "mag_three_calibration_data";
-    private String sMagFourFileName = "mag_four_calibration_data";
+    private String sMagFourFileName = "M_four_calibration_data";
 
     private const byte SELECT_SP1_MAG = 0;
     private const byte SELECT_SP2_MAG = 1;
     private const byte SELECT_SP3_MAG = 2;
     private const byte SELECT_SP4_MAG = 3;
+
+    public const byte MAG_TEST_OFF = 0;
+    public const byte MAG_TEST_STORE = 1;
+    public const byte MAG_TEST_SEND = 2;
 
     // This is a singleton class
     // Return a reference to the only instance of HPDAQCmds
@@ -341,20 +346,33 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
-    public void Ringbuffer_Enable(byte yOn)
+    public void Ringbuffer_Clear()
     {
       byte[] ayCmd = new byte[9];
 
       AddSyncCode(ref ayCmd);
-      ayCmd[3] = RINGBUFFER_ENABLE;
+      ayCmd[3] = RINGBUFFER_CLEAR;
       ayCmd[4] = 0;
       ayCmd[5] = 1;
-      ayCmd[6] = yOn;
-
+      ayCmd[5] = 1; // send dummy character
       AddChecksum(ref ayCmd);
 
       WriteOrSend(ayCmd);
 
+    }
+    public void Ringbuffer_Size()
+    {
+      byte[] ayCmd = new byte[9];
+
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = RINGBUFFER_SIZE;
+      ayCmd[4] = 0;
+      ayCmd[5] = 1;
+      ayCmd[6] = 0;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
     }
     public void Ringbuffer_Read(byte input)
     {
@@ -600,7 +618,7 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
-
+    
     public void Read_LI1_Config()
     {
       byte[] ayCmd = new byte[9];
@@ -1470,7 +1488,29 @@ namespace SPRL.Test
         MainForm._mainform.PrintError("File IO Error \n");
       }
     }
+    public void Mag_Test(byte yMagTestMode, byte yResetMeasCount, int nMeasurementCount, byte ODR, byte FAST, byte Hz)
+    {
 
+      byte[] ayCmd = new byte[17];
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = MAG_TEST;
+      ayCmd[4] = 0; //data length
+      ayCmd[5] = 9; //data length
+      ayCmd[6] = yMagTestMode;
+      ayCmd[7] = (byte) ((nMeasurementCount>>24)&0xFF); 
+      ayCmd[8] = (byte) ((nMeasurementCount>>16)&0xFF); 
+      ayCmd[9] = (byte)((nMeasurementCount>>8)&0xFF);
+      ayCmd[10] = (byte)((nMeasurementCount)&0xFF);
+      ayCmd[11] = yResetMeasCount;
+      ayCmd[12] = ODR;
+      ayCmd[13] = FAST;
+      ayCmd[14] = Hz; 
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+
+    }
     public void MRAM_Write(byte yCode_Data, byte yChip, UInt32 ui32Addr, byte[] ayData)
     {
       byte[] ayCmd = new byte[ayData.Length + 8 + 5];
