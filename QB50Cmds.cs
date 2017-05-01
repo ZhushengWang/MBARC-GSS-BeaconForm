@@ -374,15 +374,20 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
-    public void Ringbuffer_Read(byte input)
+    public void Ringbuffer_Read(int nInput)
     {
-      byte[] ayCmd = new byte[9];
-
+      byte[] ayCmd = new byte[12];
+      /*
+       *      
+       */
       AddSyncCode(ref ayCmd);
       ayCmd[3] = RINGBUFFER_READ;
       ayCmd[4] = 0;
-      ayCmd[5] = 1;
-      ayCmd[6] = input;
+      ayCmd[5] = 4;
+      ayCmd[6] = (byte)((nInput >> 24) & 0xFF);
+      ayCmd[7] = (byte)((nInput >> 16) & 0xFF);
+      ayCmd[8] = (byte)((nInput >> 8) & 0xFF);
+      ayCmd[9] = (byte)((nInput) & 0xFF); 
 
       AddChecksum(ref ayCmd);
 
