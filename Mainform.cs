@@ -456,7 +456,7 @@ namespace SPRL.Test
       {
         while ((bTotal.Count >= 6) && (!bCommandLoopbackTest))
         {
-          if ((bTotal[0] == 0xFA) && (bTotal[1] == 0xF3) && (bTotal[2] == 0x20))
+          if ((bTotal[0] == 0xFA) && (bTotal[1] == 0xF3) && ((bTotal[2] == 0x20) || (bTotal[2] == 0x21)))
           {
             int nDataCount = bTotal[4] * 256 + bTotal[5] + 2;
 
