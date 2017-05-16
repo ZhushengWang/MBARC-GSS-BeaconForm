@@ -479,6 +479,29 @@ namespace SPRL.Test
       WriteOrSend(ayCmd);
     }
 
+    public void Set_J2000_Time()
+    {
+      byte[] ayCmd = new byte[12];
+      TimeSpan t = DateTime.UtcNow - new DateTime(2000,1,1,0,0,0);
+      int secondsSinceEpoch = (int)t.TotalSeconds;
+
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = SET_TIME;
+      ayCmd[4] = 0;
+      ayCmd[5] = 4;
+
+      byte[] ayTemp = MakeBytes(secondsSinceEpoch);
+      ayCmd[6] = ayTemp[3];
+      ayCmd[7] = ayTemp[2];
+      ayCmd[8] = ayTemp[1];
+      ayCmd[9] = ayTemp[0];
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+      MainForm._mainform.PrintMsg("Time set to " + secondsSinceEpoch.ToString() + " Secs (J2000)\n");
+    }
+
     public void Read_Op_Status(byte yStatStruct)
     {
       byte[] ayCmd = new byte[9];
