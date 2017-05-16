@@ -538,6 +538,35 @@ namespace SPRL.Test
       timerSerialCom.Start();
     }
 
+    private void SaveToFile(List<byte> subPkt)
+    {
+      DateTime dateDate = DateTime.Today ;
+      String sFilename = "";
+      String sFullName = "";
+      String sDirectory = "C:\\Users\\rpmiller\\Desktop\\QB50_Data\\";
+
+      //The sync code is 0xFAF320 for US04 and 0xFAF321 for US02
+      if (subPkt[2] == 0x20)
+      {
+        sFilename = "US04-"+DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+      }
+      else
+      {
+        if (subPkt[2] == 0x21)
+        {
+          sFilename = "US02-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+        }
+      }
+
+      sFullName = sDirectory + sFilename;
+
+      FileStream fsData = new FileStream(sFullName, FileMode.Append);
+
+      fsData.Write(subPkt.ToArray(), 0, subPkt.Count);
+
+      fsData.Close();
+    }
+
     void _CmdLineScriptHost_ExecutionComplete(object sender, EventArgs e)
 		{
 			//Don't do anything for command line scripts
