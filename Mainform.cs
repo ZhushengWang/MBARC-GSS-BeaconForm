@@ -498,6 +498,8 @@ namespace SPRL.Test
 
       foreach (var subPkt in list)
       {
+        SaveToFile(subPkt);
+
         switch (subPkt[3])
         {
           case QB50Cmds.ACK_ID:
