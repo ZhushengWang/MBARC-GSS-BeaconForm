@@ -143,6 +143,20 @@ namespace SPRL.Test
         }
       }
     }
+    private int makeInt(List<byte> listPkt, int nPos)
+    {
+      return (listPkt[nPos] * 256) + listPkt[nPos + 1];
+    }
+
+    private int makeInt3(List<byte> listPkt, int nPos)
+    {
+      return (listPkt[nPos] * 65536) + listPkt[nPos + 1] * 256 + listPkt[nPos + 2];
+    }
+
+    private UInt32 makeInt4(List<byte> listPkt, int nPos)
+    {
+      return (UInt32)((listPkt[nPos] << 24) + (listPkt[nPos + 1]<<16) + (listPkt[nPos + 2] <<8) + listPkt[nPos + 3]);
+    }
 
     public void Init(string sInitString)
     {
