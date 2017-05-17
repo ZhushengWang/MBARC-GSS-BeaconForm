@@ -292,7 +292,6 @@ namespace SPRL.Test
       WriteOrSend(ayCmd);
     }
 
-    public void Toggle_Mag_Params(byte yIn)
     {
       byte[] ayCmd = new byte[9];
 
