@@ -81,9 +81,18 @@ namespace SPRL.Test
     private const byte FIP_DP_CMD = 0xBD;
     private const byte INIT_DEPLOY_COUNT = 0xBE;
     private const byte RINGBUFFER_CLEAR = 0xBF;
-    private const byte RINGBUFFER_READ = 0xC0;
+    private const byte RINGBUFFER_READ_BURST = 0xC0;
     private const byte RINGBUFFER_SIZE = 0xC1;
-    private const byte MAG_TEST = 0xC2; 
+    private const byte MAG_TEST = 0xC2;
+    private const byte SET_PHASE_IDLE = 0xC3;
+    private const byte SET_PHASE_DAQ = 0xC4;
+    private const byte SET_PHASE_DETUMBLE = 0xC5;
+    private const byte SET_MAG_PARAMS = 0xC6;
+    private const byte SET_BDOT_PARAMS = 0xC7;
+    private const byte TOGGLE_MAG_PARAMS = 0xC8;
+    private const byte RINGBUFFER_READ_PACKET = 0xC9;
+    private const byte RINGBUFFER_INCREMENT_PTR = 0xCA;
+    private const byte SEND_OPSTATUS_PACKET = 0xCB;
     //Packet constants
     public const byte ACK_ID       = 1;
     public const byte BEACON_ID    = 8;
@@ -92,7 +101,12 @@ namespace SPRL.Test
     public const byte TEST_ID      = 6;
     public const byte SU_ID        = 2;
     public const byte SU_STORED_ID = 4;
-    public const byte MAG_ID       = 10;
+    public const byte DATA_ID       = 10;
+    public const byte OPSTATUS_ID = 11;
+    public const byte MSG_TIME_ID = 12;
+
+    public const byte MAG_PACKET_TYPE = 0;
+    public const byte SUN_PACKET_TYPE = 1;
 
     public FileStream compile;
     public FileStream tm_log;
