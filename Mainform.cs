@@ -529,6 +529,10 @@ namespace SPRL.Test
           case QB50Cmds.SU_STORED_ID:
             qb50Cmds.FIP_ProcessData(subPkt);
             break;
+
+          case QB50Cmds.OPSTATUS_ID:
+            qb50Cmds.displayOPSTATUS(subPkt);
+            break;
           
           case QB50Cmds.DATA_ID:
         //    qb50Cmds.DAQ_StoreData(subPkt);
