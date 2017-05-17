@@ -514,6 +514,10 @@ namespace SPRL.Test
             seqForm.displayMsg(subPkt);
             break;
 
+          case QB50Cmds.MSG_TIME_ID:
+            seqForm.displayMsgTime(subPkt);
+            break;
+
           case QB50Cmds.TEST_ID:
             seqForm.displayTest(subPkt);
             break;
