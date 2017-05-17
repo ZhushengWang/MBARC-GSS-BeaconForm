@@ -1891,7 +1891,124 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
+    public void displayOPSTATUS(List<byte> subPkt)
+    {
+      int nLen = makeInt(subPkt, 4);
 
+      UInt32 sync = makeInt4(subPkt, 6);
+      MainForm._mainform.PrintMsg("Sync Code: " + sync.ToString() + "\n");
+      UInt32 mission_phase = makeInt4(subPkt, 10);
+      MainForm._mainform.PrintMsg("Mission_Phase: " + mission_phase.ToString() + "\n");
+      UInt32 time_code = makeInt4(subPkt, 14);
+      MainForm._mainform.PrintMsg("Time Code: " + time_code.ToString() + "\n");
+      UInt32 last_boot = makeInt4(subPkt, 18);
+      MainForm._mainform.PrintMsg("Last Boot: " + last_boot.ToString() + "\n");
+      UInt32 bootloader_version = makeInt4(subPkt, 22);
+      MainForm._mainform.PrintMsg("Bootloader Version: " + bootloader_version.ToString() + "\n");
+      UInt32 fsw_ver = makeInt4(subPkt, 26);
+      MainForm._mainform.PrintMsg("FSW Version: " + fsw_ver.ToString() + "\n");
+      UInt32 fsw_active_partition = makeInt4(subPkt, 30);
+      MainForm._mainform.PrintMsg("FSW Active Partition: " + fsw_active_partition.ToString() + "\n");
+      UInt32 boot_count = makeInt4(subPkt, 34);
+      MainForm._mainform.PrintMsg("Boot Count: " + boot_count.ToString() + "\n");
+      UInt32 comm_count = makeInt4(subPkt, 38);
+      MainForm._mainform.PrintMsg("Comm Count: " + comm_count.ToString() + "\n");
+      UInt32 deploy_count = makeInt4(subPkt, 42);
+      MainForm._mainform.PrintMsg("Deploy Count: " + deploy_count.ToString() + "\n");
+      UInt32 fip_active_script = makeInt4(subPkt, 46);
+      MainForm._mainform.PrintMsg("FIP Active Script: " + fip_active_script.ToString() + "\n");
+      UInt32 fip_script_count = makeInt4(subPkt, 50);
+      MainForm._mainform.PrintMsg("FIP script count: " + fip_script_count.ToString() + "\n");
+      UInt32 radio_tx_enable = makeInt4(subPkt, 54);
+      MainForm._mainform.PrintMsg("Radio TX Enable: " + radio_tx_enable.ToString() + "\n");
+      UInt32 initial_wait = makeInt4(subPkt, 58);
+      MainForm._mainform.PrintMsg("Initial Wait: " + initial_wait.ToString() + "\n");
+      UInt32 enable_deploy = makeInt4(subPkt, 62);
+      MainForm._mainform.PrintMsg("Enable Deploy: " + enable_deploy.ToString() + "\n");
+      UInt32 fip_script_proc_enable = makeInt4(subPkt, 66);
+      MainForm._mainform.PrintMsg("FIP Script Proc Enable: " + fip_script_proc_enable.ToString() + "\n");
+      UInt32 FIP_M1WPtr = makeInt4(subPkt, 70);
+      MainForm._mainform.PrintMsg("FIP M1WPtr: " + FIP_M1WPtr.ToString() + "\n");
+      UInt32 FIP_M1RPtr = makeInt4(subPkt, 74);
+      MainForm._mainform.PrintMsg("FIP M1RPtr: " + FIP_M1RPtr.ToString() + "\n");
+      UInt32 FIP_M2WPtr = makeInt4(subPkt, 78);
+      MainForm._mainform.PrintMsg("FIP M2WPtr: " + FIP_M2WPtr.ToString() + "\n");
+      UInt32 FIP_M2RPtr = makeInt4(subPkt, 82);
+      MainForm._mainform.PrintMsg("FIP M2RPtr: " + FIP_M2RPtr.ToString() + "\n");
+      UInt32 FIP_M1SDPCount = makeInt4(subPkt, 86);
+      MainForm._mainform.PrintMsg("FIP M1SDPCount: " + FIP_M1SDPCount.ToString() + "\n");
+      UInt32 FIP_M1HKCount = makeInt4(subPkt, 90);
+      MainForm._mainform.PrintMsg("FIP M1HKCount: " + FIP_M1HKCount.ToString() + "\n");
+      UInt32 FIP_M2SDPCount = makeInt4(subPkt, 94);
+      MainForm._mainform.PrintMsg("FIP M2SDPCount: " + FIP_M2SDPCount.ToString() + "\n");
+      UInt32 FIP_M2HKCount = makeInt4(subPkt, 98);
+      MainForm._mainform.PrintMsg("FIP_M2HKCount: " + FIP_M2HKCount.ToString() + "\n");
+      UInt32 ringbuffer_head = makeInt4(subPkt, 102);
+      MainForm._mainform.PrintMsg("ringbuffer head: " + ringbuffer_head.ToString() + "\n");
+      UInt32 ringbuffer_tail = makeInt4(subPkt, 106);
+      MainForm._mainform.PrintMsg("ringbuffer_tail: " + ringbuffer_tail.ToString() + "\n");
+      Int32 alpha_0 = (Int32)makeInt4(subPkt, 110);
+      MainForm._mainform.PrintMsg("alpha_0: " + alpha_0.ToString() + "\n");
+      Int32 xo_alpha_0 = (Int32)makeInt4(subPkt, 114);
+      MainForm._mainform.PrintMsg("xo_alpha_0: " + xo_alpha_0.ToString() + "\n");
+      Int32 beta_0 = (Int32)makeInt4(subPkt, 118);
+      MainForm._mainform.PrintMsg("beta_0: " + beta_0.ToString() + "\n");
+      Int32 yo_beta_0 = (Int32)makeInt4(subPkt, 122);
+      MainForm._mainform.PrintMsg("yo_beta_0: " + yo_beta_0.ToString() + "\n");
+      Int32 tan_phi_0 = (Int32)makeInt4(subPkt, 126);
+      MainForm._mainform.PrintMsg("tan_phi_0: " + tan_phi_0.ToString() + "\n");
+      Int32 gamma_0 = (Int32)makeInt4(subPkt, 130);
+      MainForm._mainform.PrintMsg("gamma_0: " + gamma_0.ToString() + "\n");
+      Int32 zo_gamma_0 = (Int32)makeInt4(subPkt, 134);
+      MainForm._mainform.PrintMsg("zo_gamma_0: " + zo_gamma_0.ToString() + "\n");
+      Int32 tan_row_0 = (Int32)makeInt4(subPkt, 138);
+      MainForm._mainform.PrintMsg("tan_row_0: " + tan_row_0.ToString() + "\n");
+      Int32 tan_lambda_cos_row_0 = (Int32)makeInt4(subPkt, 142);
+      MainForm._mainform.PrintMsg("tan_lambda_cos_row_0: " + tan_lambda_cos_row_0.ToString() + "\n");
+
+      Int32 alpha_1 = (Int32)makeInt4(subPkt, 146);
+      MainForm._mainform.PrintMsg("alpha_1: " + alpha_1.ToString() + "\n");
+      Int32 xo_alpha_1 = (Int32)makeInt4(subPkt, 150);
+      MainForm._mainform.PrintMsg("xo_alpha_1: " + xo_alpha_1.ToString() + "\n");
+      Int32 beta_1 = (Int32)makeInt4(subPkt, 154);
+      MainForm._mainform.PrintMsg("beta_1: " + beta_1.ToString() + "\n");
+      Int32 yo_beta_1 = (Int32)makeInt4(subPkt, 158);
+      MainForm._mainform.PrintMsg("yo_beta_1: " + yo_beta_1.ToString() + "\n");
+      Int32 tan_phi_1 = (Int32)makeInt4(subPkt, 162);
+      MainForm._mainform.PrintMsg("tan_phi_1: " + tan_phi_1.ToString() + "\n");
+      Int32 gamma_1 = (Int32)makeInt4(subPkt, 166);
+      MainForm._mainform.PrintMsg("gamma_1: " + gamma_1.ToString() + "\n");
+      Int32 zo_gamma_1 = (Int32)makeInt4(subPkt, 170);
+      MainForm._mainform.PrintMsg("zo_gamma_1: " + zo_gamma_1.ToString() + "\n");
+      Int32 tan_row_1 = (Int32)makeInt4(subPkt, 174);
+      MainForm._mainform.PrintMsg("tan_row_1: " + tan_row_1.ToString() + "\n");
+      Int32 tan_lambda_cos_row_1 = (Int32)makeInt4(subPkt, 178);
+      MainForm._mainform.PrintMsg("tan_lambda_cos_row_1: " + tan_lambda_cos_row_1.ToString() + "\n");
+
+      Int32 alpha_2 = (Int32)makeInt4(subPkt, 182);
+      MainForm._mainform.PrintMsg("alpha_2: " + alpha_2.ToString() + "\n");
+      Int32 xo_alpha_2 = (Int32)makeInt4(subPkt, 186);
+      MainForm._mainform.PrintMsg("xo_alpha_2: " + xo_alpha_2.ToString() + "\n");
+      Int32 beta_2 = (Int32)makeInt4(subPkt, 190);
+      MainForm._mainform.PrintMsg("beta_2: " + beta_2.ToString() + "\n");
+      Int32 yo_beta_2 = (Int32)makeInt4(subPkt, 194);
+      MainForm._mainform.PrintMsg("yo_beta_2: " + yo_beta_2.ToString() + "\n");
+      Int32 tan_phi_2 = (Int32)makeInt4(subPkt, 198);
+      MainForm._mainform.PrintMsg("tan_phi_2: " + tan_phi_2.ToString() + "\n");
+      Int32 gamma_2 = (Int32)makeInt4(subPkt, 202);
+      MainForm._mainform.PrintMsg("gamma_2: " + gamma_2.ToString() + "\n");
+      Int32 zo_gamma_2 = (Int32)makeInt4(subPkt, 206);
+      MainForm._mainform.PrintMsg("zo_gamma_2: " + zo_gamma_2.ToString() + "\n");
+      Int32 tan_row_2 = (Int32)makeInt4(subPkt, 210);
+      MainForm._mainform.PrintMsg("tan_row_2: " + tan_row_2.ToString() + "\n");
+      Int32 tan_lambda_cos_row_2 = (Int32)makeInt4(subPkt, 214);
+      MainForm._mainform.PrintMsg("tan_lambda_cos_row_2: " + tan_lambda_cos_row_2.ToString() + "\n");
+
+      Int32 scale_mult  = (Int32)makeInt4(subPkt, 218);
+      MainForm._mainform.PrintMsg("scale_mult: " + scale_mult.ToString() + "\n");
+      Int32 scale_div = (Int32)makeInt4(subPkt, 222);
+      MainForm._mainform.PrintMsg("scale_div: " + scale_div.ToString() + "\n");
+    }
     public void BootFSW(byte yCode_Data, byte yChip, UInt32 ui32Addr)
     {
       byte[] ayCmd = new byte[8 + 5];
