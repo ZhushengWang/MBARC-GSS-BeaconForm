@@ -526,8 +526,8 @@ namespace SPRL.Test
             qb50Cmds.FIP_ProcessData(subPkt);
             break;
           
-          case QB50Cmds.MAG_ID:
-            qb50Cmds.Mag_StoreData(subPkt);
+          case QB50Cmds.DATA_ID:
+        //    qb50Cmds.DAQ_StoreData(subPkt);
             break;
           default:
             PrintError("Error: Bad Packet Type" + subPkt[3] + "\n");
