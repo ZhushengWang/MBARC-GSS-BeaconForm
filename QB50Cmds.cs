@@ -436,6 +436,35 @@ namespace SPRL.Test
       WriteOrSend(ayCmd);
 
     }
+    public void Ringbuffer_Read_Packet()
+    {
+      byte[] ayCmd = new byte[9];
+
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = RINGBUFFER_READ_PACKET;
+      ayCmd[4] = 0;
+      ayCmd[5] = 1;
+      ayCmd[6] = 0;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+    }
+    public void Ringbuffer_Increment_Ptr()
+    {
+      byte[] ayCmd = new byte[9];
+
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = RINGBUFFER_INCREMENT_PTR;
+      ayCmd[4] = 0;
+      ayCmd[5] = 1;
+      ayCmd[6] = 0;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+    }
+
     public void Set_LI1_HK_Enable(byte yOn)
     {
       byte[] ayCmd = new byte[9];
