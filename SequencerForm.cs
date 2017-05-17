@@ -122,12 +122,23 @@ namespace SPRL.Test
     internal void displayMsg(List<byte> subPkt)
     {
       int nLen = makeInt(subPkt, 4);
-
       ASCIIEncoding encoding = new ASCIIEncoding();
-      string sMsg = encoding.GetString(subPkt.ToArray(),6,nLen);
+      string sMsg = encoding.GetString(subPkt.ToArray(), 6, nLen);
       MainForm._mainform.PrintMsg(sMsg);
+      
     }
-
+    internal void displayMsgTime(List<byte> subPkt)
+    {
+      int nLen = makeInt(subPkt, 4);
+      UInt32 time = 0;
+      ASCIIEncoding encoding = new ASCIIEncoding();
+      time = (UInt32)((subPkt[6] << 24) + (subPkt[7] << 16) + (subPkt[8] << 8) + subPkt[9]);
+      MainForm._mainform.PrintMsg(time.ToString());
+      MainForm._mainform.PrintMsg("\n");
+      string sMsg = encoding.GetString(subPkt.ToArray(), 10, nLen - 4);
+      MainForm._mainform.PrintMsg(sMsg);
+      
+    }
     internal void displayTest(List<byte> subPkt)
     {
       int nBytesPerLine = 0;
