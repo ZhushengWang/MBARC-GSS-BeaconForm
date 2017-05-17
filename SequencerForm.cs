@@ -110,7 +110,7 @@ namespace SPRL.Test
 
     private UInt32 makeInt4(List<byte> listPkt, int nPos)
     {
-      return (UInt32)(((listPkt[nPos] << 24) + listPkt[nPos] * 65536) + listPkt[nPos + 1] * 256 + listPkt[nPos + 2]);
+      return (UInt32)(((listPkt[nPos] << 24) + listPkt[nPos+1] * 65536) + listPkt[nPos + 2] * 256 + listPkt[nPos + 3]);
     }
 
 
