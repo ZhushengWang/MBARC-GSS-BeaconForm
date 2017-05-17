@@ -278,6 +278,21 @@ namespace SPRL.Test
       WriteOrSend(ayCmd);
     }
 
+    public void Toggle_Mag_Params(byte yIn)
+    {
+      byte[] ayCmd = new byte[9];
+
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = TOGGLE_MAG_PARAMS;
+      ayCmd[4] = 0;
+      ayCmd[5] = 1;
+      ayCmd[6] = yIn;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+    }
+
     public void Read_Mag_ID(byte yMag)
     {
       byte[] ayCmd = new byte[9];
