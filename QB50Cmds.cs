@@ -616,7 +616,21 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
+    public void Send_Opstatus_Packet(byte yIn)
+    {
+      byte[] ayCmd = new byte[9];
 
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = SEND_OPSTATUS_PACKET;
+      ayCmd[4] = 0;
+      ayCmd[5] = 1;
+      ayCmd[6] = yIn;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+
+    }
     public void Set_LI1_Test_Mode(byte yOn)
     {
       byte[] ayCmd = new byte[9];
