@@ -153,9 +153,21 @@ namespace SPRL.Test
     private int nExtraBytes = 0;
     private Button button1;
     public bool bSerialDataisASCII = false;
+    private RadioButton radioButtonUS02;
+    private RadioButton radioButtonUS04;
+    private RadioButton radioButtonTestSat;
 
     //List for network packet bytes from RoverSim
     private List<byte> bRSIMTotal = new List<byte>();
+
+    private enum SatEnum
+    {
+      US02,
+      US04,
+      TESTSAT
+    }
+
+    SatEnum SatSelection = SatEnum.US04;
 
     public MainForm()
     {
@@ -556,7 +568,21 @@ namespace SPRL.Test
       //The sync code is 0xFAF320 for US04 and 0xFAF321 for US02
       if (subPkt[2] == 0x20)
       {
-        sFilename = "US04-"+DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+        if (SatSelection == SatEnum.US04)
+        {
+          sFilename = "US04-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+        }
+        else
+        {
+          if (SatSelection == SatEnum.US02)
+          {
+            sFilename = "US02-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+          }
+          else
+          {
+            sFilename = "TEST-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+          }
+        }
       }
       else
       {
@@ -621,14 +647,14 @@ namespace SPRL.Test
     {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
       this.HistorylistBox = new System.Windows.Forms.ListBox();
       this.CommandtextBox = new System.Windows.Forms.TextBox();
       this.label1 = new System.Windows.Forms.Label();
@@ -687,6 +713,9 @@ namespace SPRL.Test
       this.printScriptDialog = new System.Windows.Forms.PrintDialog();
       this.PrintScriptDocument = new System.Drawing.Printing.PrintDocument();
       this.CompileFileDialog = new System.Windows.Forms.SaveFileDialog();
+      this.radioButtonUS02 = new System.Windows.Forms.RadioButton();
+      this.radioButtonUS04 = new System.Windows.Forms.RadioButton();
+      this.radioButtonTestSat = new System.Windows.Forms.RadioButton();
       this.groupBox3.SuspendLayout();
       this.groupBox4.SuspendLayout();
       this.RichScriptcontextMenuStrip.SuspendLayout();
@@ -973,38 +1002,38 @@ namespace SPRL.Test
       this.dataGridView1.AllowUserToDeleteRows = false;
       this.dataGridView1.AllowUserToResizeColumns = false;
       this.dataGridView1.AllowUserToResizeRows = false;
-      dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-      dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-      dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-      this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+      dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+      dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+      dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+      this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle33;
       this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-      dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+      dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
       this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Set_V,
             this.Actual_V,
             this.I});
-      dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-      dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-      this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+      dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+      dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+      this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle38;
       this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
       this.dataGridView1.Enabled = false;
       this.dataGridView1.GridColor = System.Drawing.SystemColors.Window;
@@ -1012,25 +1041,25 @@ namespace SPRL.Test
       this.dataGridView1.MultiSelect = false;
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
-      dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-      dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-      dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+      dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+      dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle39.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+      dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-      dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-      dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-      dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+      dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+      dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+      dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle40;
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
       this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Window;
       this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -1055,12 +1084,12 @@ namespace SPRL.Test
       // Set_V
       // 
       this.Set_V.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-      dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
-      dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-      dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-      this.Set_V.DefaultCellStyle = dataGridViewCellStyle3;
+      dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+      dataGridViewCellStyle35.BackColor = System.Drawing.Color.Silver;
+      dataGridViewCellStyle35.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle35.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+      dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.Silver;
+      this.Set_V.DefaultCellStyle = dataGridViewCellStyle35;
       this.Set_V.DividerWidth = 2;
       this.Set_V.FillWeight = 33F;
       this.Set_V.HeaderText = "Set V";
@@ -1073,11 +1102,11 @@ namespace SPRL.Test
       // Actual_V
       // 
       this.Actual_V.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-      dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle4.NullValue = null;
-      dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-      this.Actual_V.DefaultCellStyle = dataGridViewCellStyle4;
+      dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+      dataGridViewCellStyle36.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle36.NullValue = null;
+      dataGridViewCellStyle36.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+      this.Actual_V.DefaultCellStyle = dataGridViewCellStyle36;
       this.Actual_V.FillWeight = 33F;
       this.Actual_V.HeaderText = "Actual V";
       this.Actual_V.Name = "Actual_V";
@@ -1088,9 +1117,9 @@ namespace SPRL.Test
       // I
       // 
       this.I.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-      dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-      this.I.DefaultCellStyle = dataGridViewCellStyle5;
+      dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+      dataGridViewCellStyle37.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+      this.I.DefaultCellStyle = dataGridViewCellStyle37;
       this.I.FillWeight = 33F;
       this.I.HeaderText = "I";
       this.I.Name = "I";
@@ -1420,10 +1449,48 @@ namespace SPRL.Test
       this.CompileFileDialog.Title = "Save Seq";
       this.CompileFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.CompileFile_Ok);
       // 
+      // radioButtonUS02
+      // 
+      this.radioButtonUS02.AutoSize = true;
+      this.radioButtonUS02.Location = new System.Drawing.Point(10, 9);
+      this.radioButtonUS02.Name = "radioButtonUS02";
+      this.radioButtonUS02.Size = new System.Drawing.Size(89, 17);
+      this.radioButtonUS02.TabIndex = 24;
+      this.radioButtonUS02.Text = "US02-Atlantis";
+      this.radioButtonUS02.UseVisualStyleBackColor = true;
+      this.radioButtonUS02.CheckedChanged += new System.EventHandler(this.radioButtonUS02_CheckedChanged);
+      // 
+      // radioButtonUS04
+      // 
+      this.radioButtonUS04.AutoSize = true;
+      this.radioButtonUS04.Checked = true;
+      this.radioButtonUS04.Location = new System.Drawing.Point(10, 27);
+      this.radioButtonUS04.Name = "radioButtonUS04";
+      this.radioButtonUS04.Size = new System.Drawing.Size(98, 17);
+      this.radioButtonUS04.TabIndex = 25;
+      this.radioButtonUS04.TabStop = true;
+      this.radioButtonUS04.Text = "US04-Columbia";
+      this.radioButtonUS04.UseVisualStyleBackColor = true;
+      this.radioButtonUS04.CheckedChanged += new System.EventHandler(this.radioButtonUS04_CheckedChanged);
+      // 
+      // radioButtonTestSat
+      // 
+      this.radioButtonTestSat.AutoSize = true;
+      this.radioButtonTestSat.Location = new System.Drawing.Point(10, 45);
+      this.radioButtonTestSat.Name = "radioButtonTestSat";
+      this.radioButtonTestSat.Size = new System.Drawing.Size(62, 17);
+      this.radioButtonTestSat.TabIndex = 26;
+      this.radioButtonTestSat.Text = "TestSat";
+      this.radioButtonTestSat.UseVisualStyleBackColor = true;
+      this.radioButtonTestSat.CheckedChanged += new System.EventHandler(this.radioButtonTestSat_CheckedChanged);
+      // 
       // MainForm
       // 
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
       this.ClientSize = new System.Drawing.Size(672, 486);
+      this.Controls.Add(this.radioButtonTestSat);
+      this.Controls.Add(this.radioButtonUS04);
+      this.Controls.Add(this.radioButtonUS02);
       this.Controls.Add(this.splitContainer1);
       this.Controls.Add(this.groupBox7);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1450,6 +1517,7 @@ namespace SPRL.Test
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
         }
         #endregion
@@ -2234,6 +2302,40 @@ namespace SPRL.Test
       String sASCII = ((char)sDigit1).ToString() + ((char)sDigit2).ToString();
 
       return (Convert.ToByte(sASCII, 16));
+    }
+
+    private void radioButtonUS04_CheckedChanged(object sender, EventArgs e)
+    {
+      EvaluateSatSelection();
+    }
+
+    private void radioButtonTestSat_CheckedChanged(object sender, EventArgs e)
+    {
+      EvaluateSatSelection();
+    }
+
+    private void radioButtonUS02_CheckedChanged(object sender, EventArgs e)
+    {
+      EvaluateSatSelection();
+    }
+
+    private void EvaluateSatSelection()
+    {
+      if (radioButtonUS02.Checked)
+      {
+        SatSelection = SatEnum.US02;
+      }
+      else
+      {
+        if (radioButtonUS04.Checked)
+        {
+          SatSelection = SatEnum.US04;
+        }
+        else
+        {
+          SatSelection = SatEnum.TESTSAT;
+        }
+      }
     }
 	}
 }

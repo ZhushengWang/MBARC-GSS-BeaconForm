@@ -11,11 +11,18 @@ namespace SPRL.Test
 {
   public partial class BeaconForm : Form
   {
+    private Timer pktTimer = new Timer();
+    private DateTime dtPktTime = DateTime.Now;
+   
     public int[] LastBeacon;
 
     public BeaconForm()
     {
       InitializeComponent();
+
+      pktTimer.Interval = 1000;
+      pktTimer.Tick += new EventHandler(pktTimer_Tick);
+      pktTimer.Start();
 
       dataGridView2.Columns.Add("Col1", "Col1");
       dataGridView2.Columns.Add("Col2", "Col2");
@@ -151,6 +158,13 @@ namespace SPRL.Test
       dataGridView2.Rows[19].Cells[8].Value = "LI1 TX:";
     }
 
+    void pktTimer_Tick(object sender, EventArgs e)
+    {
+      TimeSpan tsSpan = DateTime.Now - dtPktTime;
+
+      this.Text = "Beacon Data - " + tsSpan.Days.ToString()+"d "+tsSpan.Hours.ToString("D2")+":"+tsSpan.Minutes.ToString("D2")+":"+tsSpan.Seconds.ToString("D2");
+    }
+
     private int makeInt(List<byte> listPkt, int nPos)
     {
       return (listPkt[nPos] * 256) + listPkt[nPos + 1];
@@ -210,6 +224,8 @@ namespace SPRL.Test
       int nOff = 0;
       const int nHdrLen = 6;
       int nInc;
+
+      dtPktTime = DateTime.Now;
 
       dataGridView2.SuspendLayout();
       //MainForm._mainform.PrintMsg("Got Beacon Packet: " + listPkt.Count + "\n");

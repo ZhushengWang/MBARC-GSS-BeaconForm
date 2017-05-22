@@ -13,9 +13,17 @@ namespace SPRL.Test
   {
     public int[] LastHK;
 
+    private Timer pktTimer = new Timer();
+    private DateTime dtPktTime = DateTime.Now;
+
     public HKForm()
     {
       InitializeComponent();
+
+      pktTimer.Interval = 1000;
+
+      pktTimer.Tick += new EventHandler(pktTimer_Tick);
+      pktTimer.Start();
 
       dataGridView2.Columns.Add("Col1", "Col1");
       dataGridView2.Columns.Add("Col2", "Col2");
@@ -151,6 +159,13 @@ namespace SPRL.Test
       dataGridView2.Rows[19].Cells[8].Value = "";
     }
 
+    void pktTimer_Tick(object sender, EventArgs e)
+    {
+      TimeSpan tsSpan = DateTime.Now - dtPktTime;
+
+      this.Text = "HK Data - " + tsSpan.Days.ToString() + "d " + tsSpan.Hours.ToString("D2") + ":" + tsSpan.Minutes.ToString("D2") + ":" + tsSpan.Seconds.ToString("D2");
+    }
+
     private int makeInt(List<byte> listPkt, int nPos)
     {
       return (listPkt[nPos] * 256) + listPkt[nPos + 1];
@@ -214,6 +229,8 @@ namespace SPRL.Test
 
     public void displayHK(List<byte> listPkt)
     {
+      dtPktTime = DateTime.Now;
+
       if (!backgroundWorker1.IsBusy)
       {
         backgroundWorker1.RunWorkerAsync(listPkt);
