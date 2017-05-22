@@ -81,18 +81,17 @@ namespace SPRL.Test
     private const byte FIP_DP_CMD = 0xBD;
     private const byte INIT_DEPLOY_COUNT = 0xBE;
     private const byte RINGBUFFER_CLEAR = 0xBF;
-    private const byte RINGBUFFER_READ_BURST = 0xC0;
-    private const byte RINGBUFFER_SIZE = 0xC1;
-    private const byte MAG_TEST = 0xC2;
-    private const byte SET_PHASE_IDLE = 0xC3;
-    private const byte SET_PHASE_DAQ = 0xC4;
-    private const byte SET_PHASE_DETUMBLE = 0xC5;
-    private const byte SET_MAG_PARAMS = 0xC6;
-    private const byte SET_BDOT_PARAMS = 0xC7;
-    private const byte TOGGLE_MAG_PARAMS = 0xC8;
-    private const byte RINGBUFFER_READ_PACKET = 0xC9;
-    private const byte RINGBUFFER_INCREMENT_PTR = 0xCA;
-    private const byte SEND_OPSTATUS_PACKET = 0xCB;
+    private const byte RINGBUFFER_SIZE = 0xC0;
+    private const byte SET_PHASE_IDLE = 0xC1;
+    private const byte SET_PHASE_DAQ = 0xC2;
+    private const byte SET_PHASE_DETUMBLE = 0xC3;
+    private const byte SET_MAG_PARAMS = 0xC4;
+    private const byte SET_BDOT_PARAMS = 0xC5;
+    private const byte TOGGLE_MAG_PARAMS = 0xC6;
+    private const byte RINGBUFFER_READ_PACKET = 0xC7;
+    private const byte RINGBUFFER_INCREMENT_PTR = 0xC8;
+    private const byte SEND_OPSTATUS_PACKET = 0xC9;
+
     //Packet constants
     public const byte ACK_ID       = 1;
     public const byte BEACON_ID    = 8;
@@ -416,26 +415,7 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
-    public void Ringbuffer_Read(int nInput)
-    {
-      byte[] ayCmd = new byte[12];
-      /*
-       *      
-       */
-      AddSyncCode(ref ayCmd);
-      ayCmd[3] = RINGBUFFER_READ;
-      ayCmd[4] = 0;
-      ayCmd[5] = 4;
-      ayCmd[6] = (byte)((nInput >> 24) & 0xFF);
-      ayCmd[7] = (byte)((nInput >> 16) & 0xFF);
-      ayCmd[8] = (byte)((nInput >> 8) & 0xFF);
-      ayCmd[9] = (byte)((nInput) & 0xFF); 
 
-      AddChecksum(ref ayCmd);
-
-      WriteOrSend(ayCmd);
-
-    }
     public void Ringbuffer_Read_Packet()
     {
       byte[] ayCmd = new byte[9];
@@ -1601,29 +1581,7 @@ namespace SPRL.Test
         MainForm._mainform.PrintError("File IO Error \n");
       }
     }
-    public void Mag_Test(byte yMagTestMode, byte yResetMeasCount, int nMeasurementCount, byte ODR, byte FAST, byte Hz)
-    {
 
-      byte[] ayCmd = new byte[17];
-      AddSyncCode(ref ayCmd);
-      ayCmd[3] = MAG_TEST;
-      ayCmd[4] = 0; //data length
-      ayCmd[5] = 9; //data length
-      ayCmd[6] = yMagTestMode;
-      ayCmd[7] = (byte) ((nMeasurementCount>>24)&0xFF); 
-      ayCmd[8] = (byte) ((nMeasurementCount>>16)&0xFF); 
-      ayCmd[9] = (byte)((nMeasurementCount>>8)&0xFF);
-      ayCmd[10] = (byte)((nMeasurementCount)&0xFF);
-      ayCmd[11] = yResetMeasCount;
-      ayCmd[12] = ODR;
-      ayCmd[13] = FAST;
-      ayCmd[14] = Hz; 
-
-      AddChecksum(ref ayCmd);
-
-      WriteOrSend(ayCmd);
-
-    }
     public void MRAM_Write(byte yCode_Data, byte yChip, UInt32 ui32Addr, byte[] ayData)
     {
       byte[] ayCmd = new byte[ayData.Length + 8 + 5];
