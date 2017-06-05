@@ -2044,10 +2044,20 @@ namespace SPRL.Test
       Int32 tan_lambda_cos_row_2 = (Int32)makeInt4(subPkt, 214);
       MainForm._mainform.PrintMsg("tan_lambda_cos_row_2: " + tan_lambda_cos_row_2.ToString() + "\n");
 
-      Int32 scale_mult  = (Int32)makeInt4(subPkt, 218);
+      Int32 scale_mult  = (Int32)makeInt(subPkt, 218);
       MainForm._mainform.PrintMsg("scale_mult: " + scale_mult.ToString() + "\n");
-      Int32 scale_div = (Int32)makeInt4(subPkt, 222);
+      Int32 scale_div = (Int32)makeInt(subPkt, 220);
       MainForm._mainform.PrintMsg("scale_div: " + scale_div.ToString() + "\n");
+
+      Int32 OP_mag_params_SP1_init_flag = (Int32)makeInt4(subPkt, 222);
+      MainForm._mainform.PrintMsg("OP_mag_params_SP1_init_flag: " + OP_mag_params_SP1_init_flag.ToString() + "\n");
+      Int32 OP_mag_params_SP2_init_flag = (Int32)makeInt4(subPkt, 226);
+      MainForm._mainform.PrintMsg("OP_mag_params_SP2_init_flag: " + OP_mag_params_SP2_init_flag.ToString() + "\n");
+      Int32 OP_mag_params_SP3_init_flag = (Int32)makeInt4(subPkt, 230);
+      MainForm._mainform.PrintMsg("OP_mag_params_SP3_init_flag: " + OP_mag_params_SP3_init_flag.ToString() + "\n");
+      Int32 OP_bdot_params_init_flag = (Int32)makeInt4(subPkt, 234);
+      MainForm._mainform.PrintMsg(" OP_bdot_params_init_flag: " + OP_bdot_params_init_flag.ToString() + "\n");
+
     }
     public void BootFSW(byte yCode_Data, byte yChip, UInt32 ui32Addr)
     {
@@ -2168,3 +2178,4 @@ namespace SPRL.Test
     }
   }
 }
+    
