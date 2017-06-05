@@ -1441,6 +1441,45 @@ namespace SPRL.Test
 
       WriteOrSend(ayCmd);
     }
+    public void Set_Phase_Idle()
+    {
+      byte[] ayCmd = new byte[8];
+      AddSyncCode(ref ayCmd);
+      ayCmd[3] = SET_PHASE_IDLE; 
+      ayCmd[4] = 0;
+      ayCmd[5] = 0;
+
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+
+    }
+    public void Set_Phase_DAQ( UInt16 test_freq_mag, UInt16 total_count_mag, UInt16 test_freq_sun, UInt16 total_count_sun)
+    {
+      if (test_freq_mag < 1 || test_freq_sun < 1)
+      {
+        MainForm._mainform.PrintError("Input Error: freq must be greater than 0\n");
+        return;
+      }
+      byte[] ayCmd = new byte[16];
+      AddSyncCode(ref ayCmd);
+
+      ayCmd[3] = SET_PHASE_DAQ;
+      ayCmd[4] = 0;
+      ayCmd[5] = 8;
+      ayCmd[6] = (byte)(test_freq_mag >> 8);
+      ayCmd[7] = (byte)(test_freq_mag & 0xFF);
+      ayCmd[8] = (byte)(total_count_mag >> 8);
+      ayCmd[9] = (byte)(total_count_mag & 0xFF);
+      ayCmd[10] = (byte)(test_freq_sun >> 8);
+      ayCmd[11] = (byte)(test_freq_sun & 0xFF);
+      ayCmd[12] = (byte)(total_count_sun >> 8);
+      ayCmd[13] = (byte)(total_count_sun & 0xFF);
+      
+      AddChecksum(ref ayCmd);
+
+      WriteOrSend(ayCmd);
+    }
 
     //Same as go_boot_cmd()
     public void go()
