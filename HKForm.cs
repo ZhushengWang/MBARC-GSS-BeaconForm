@@ -288,10 +288,12 @@ namespace SPRL.Test
       }
 
       //OpStats
-      for (int i = 0; i < 25; i++)
+      for (int i = 0; i < 24; i++)
       {
         listConverted[0].Add(makeInt4(listPkt, 62 + i * 4).ToString());
       }
+     
+      listConverted[0].Add(listPkt[161].ToString("X2"));
 
       //Power Control 1
       listConverted[0].Add(((listPkt[162] >> 6) & 0x01).ToString());
