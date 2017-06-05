@@ -1216,7 +1216,7 @@ namespace SPRL.Test
       fsSDP.Close();
       fsHK.Close();
     }
-    public void Mag_StoreData(List<byte> listPkt)
+    public void DAQ_StoreData(List<byte> listPkt)
     {
       int nPktLen = (listPkt[4] << 8) + listPkt[5];
 
@@ -1225,9 +1225,16 @@ namespace SPRL.Test
         MainForm._mainform.PrintMsg("Retrieved Packet is 0 length.\n");
         return;
       }
-      int uwMagNumber = (listPkt[6] * 256) + listPkt[7];
-      int uwMeasurementCount = listPkt[8]*256 + listPkt[9];
+      //6,7,8,9
+      UInt32 unPacketTime =  (UInt32)(((listPkt[6] << 24) + listPkt[7] << 16) + (listPkt[8] << 8) + listPkt[9]);
+     
+      int nPacketType = (listPkt[11]>>4)&0xF;
+      int nMagNumber = (listPkt[11])&0xF; 
+      int nMeasurementFrequency = (listPkt[10]);
+      MainForm._mainform.PrintMsg("Packet Time is: "+ unPacketTime+ " npacketType is: " + nPacketType + " nMagNumber is: " 
+        + nMagNumber + " Frequency is: " + nMeasurementFrequency + " packet length " + nPktLen + "\n" );
 
+      /*
       byte[] ConvertedListPkt;
       ConvertedListPkt = new byte[nPktLen];
       for (int i = 0; i < nPktLen-5;)
