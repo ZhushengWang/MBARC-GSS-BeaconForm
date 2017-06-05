@@ -565,9 +565,12 @@ namespace SPRL.Test
       String sFullName = "";
       String sDirectory = "C:\\Users\\rpmiller\\Desktop\\QB50_Data\\";
 
-      //The sync code is 0xFAF320 for US04 and 0xFAF321 for US02
+      //The sync code is 0xFAF320 for US02 and 0xFAF321 for US04
+   
       if (subPkt[2] == 0x20)
       {
+        sFilename = "US02-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+    /*
         if (SatSelection == SatEnum.US04)
         {
           sFilename = "US04-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
@@ -583,12 +586,17 @@ namespace SPRL.Test
             sFilename = "TEST-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
           }
         }
+      */  
       }
       else
       {
         if (subPkt[2] == 0x21)
         {
-          sFilename = "US02-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+          sFilename = "US04-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
+        }
+        else
+        {
+          sFilename = "TEST-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pkt";
         }
       }
 
