@@ -1234,7 +1234,7 @@ namespace SPRL.Test
       MainForm._mainform.PrintMsg("Packet Time is: "+ unPacketTime+ " npacketType is: " + nPacketType + " nMagNumber is: " 
         + nMagNumber + " Frequency is: " + nMeasurementFrequency + " packet length " + nPktLen + "\n" );
 
-      /*
+/*
       byte[] ConvertedListPkt;
       ConvertedListPkt = new byte[nPktLen];
       for (int i = 0; i < nPktLen-5;)
@@ -1305,6 +1305,7 @@ namespace SPRL.Test
         fsMAG.Close();
       }
       }
+      */
     }
     public string RemoveWhitespace(string input)
     {

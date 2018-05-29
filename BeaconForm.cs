@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -147,7 +147,7 @@ namespace SPRL.Test
       dataGridView2.Rows[8].Cells[8].Value = "IMU2 AcclX:";
       dataGridView2.Rows[9].Cells[8].Value = "IMU2 AcclY:";
       dataGridView2.Rows[10].Cells[8].Value = "IMU2 AcclZ:";
-      dataGridView2.Rows[11].Cells[8].Value = "FSW Pkts";
+      dataGridView2.Rows[11].Cells[8].Value = "IMU1 Temp:";
       dataGridView2.Rows[12].Cells[8].Value = "IMU1 GyroX:";
       dataGridView2.Rows[13].Cells[8].Value = "IMU1 GyroY:";
       dataGridView2.Rows[14].Cells[8].Value = "IMU1 GyroZ:";
@@ -237,9 +237,9 @@ namespace SPRL.Test
       Convert[nOff++] = makeInt(listPkt, 14);
       Convert[nOff++] = makeInt(listPkt, 16);
 
-      //Data for 7 ADCs
+      //Data for 6 ADCs
       nInc = 0;
-      for (int j = 0; j < 7; j++)
+      for (int j = 0; j < 6; j++)
       {
         for (int i = 0; i < 9; i++)
         {
@@ -247,38 +247,47 @@ namespace SPRL.Test
           nInc += 2;
         }
       }
-
+      for (int i = 0; i < 9; i++)
+      {
+        Convert[nOff++] = 0;
+        nInc += 2;
+      }
+      //Data for 4 Mags
       nInc = 0;
       for (int j = 0; j < 4; j++)
       {
         for (int i = 0; i < 4; i++)
         {
-          Convert[nOff++] = makeInt(listPkt, 144 +nInc);
+          Convert[nOff++] = makeInt(listPkt, 126 +nInc);
           nInc += 2;
         }
       }
-
+      //Data for IMU2 
       nInc = 0;
       for (int i = 0; i < 7; i++)
       {
-        Convert[nOff++] = makeInt4(listPkt, 176 + nInc);
+        Convert[nOff++] = 0;
         nInc += 4;
       }
-
+      //Data for IMU1
+        //imu1 temp
       nInc = 0;
-      for (int i = 0; i < 4; i++)
+      Convert[nOff++] = listPkt[158];
+        //imu1 gyro
+      nInc = 0;
+      for (int i = 0; i < 3; i++)
       {
-        Convert[nOff++] = makeInt(listPkt, 204 + nInc);
+        Convert[nOff++] = makeInt(listPkt, 159 + nInc);
         nInc += 2;
       }
 
       //LI Status
-      Convert[nOff++] = makeIntLE(listPkt, 212);
-      Convert[nOff++] = makeIntLE(listPkt, 214);
-      Convert[nOff++] = makeInt3LE(listPkt, 216);
-      //Convert[nOff++] = listPkt[219];
-      Convert[nOff++] = makeInt4LE(listPkt, 220);
-      Convert[nOff++] = makeInt4LE(listPkt, 224);
+      Convert[nOff++] = makeIntLE(listPkt, 167);
+      Convert[nOff++] = makeIntLE(listPkt, 169);
+      Convert[nOff++] = makeInt3LE(listPkt, 171);
+      //Convert[nOff++] = listPkt[174];
+      Convert[nOff++] = makeInt4LE(listPkt, 175);
+      Convert[nOff++] = makeInt4LE(listPkt, 179);
       
       LastBeacon = Convert;
 
@@ -518,7 +527,9 @@ namespace SPRL.Test
                 case 90:  //IMU2 Accel Z
                   dataGridView2.Rows[k].Cells[j + 1].Value = ((double)Convert[c] * 0.125 / 65536.0).ToString("F3");
                   break;
-
+                case 91:  //IMU1 Temp
+                  dataGridView2.Rows[k].Cells[j + 1].Value = ((int)Convert[c] + 25).ToString("D3");
+                  break;
                 case 92:  //IMU1 Gyro Data
                 case 93:
                 case 94:
