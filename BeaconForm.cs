@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+// The main file to be modified
 namespace SPRL.Test
 {
   public partial class BeaconForm : Form
